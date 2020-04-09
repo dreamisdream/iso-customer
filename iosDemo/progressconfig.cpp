@@ -17,7 +17,7 @@ ProgressConfig::ProgressConfig(QWidget *parent)
     , btn(new DPushButton)
     , layout(new QVBoxLayout(this))
     , cmdlnkbtn(new DCommandLinkButton(tr("选择程序deb包")))
-    , lineEdit(new DLineEdit)
+    , textEdit(new DTextEdit)
     , clearButton(new DCommandLinkButton("全部清除"))
 {
     init();
@@ -45,8 +45,8 @@ void ProgressConfig::init()
 
     layout->addLayout(hLayout);
 
-    lineEdit->hide();
-    layout->addWidget(lineEdit);
+    textEdit->hide();
+    layout->addWidget(textEdit);
     layout->addStretch();
 
     DLabel *label2 = new DLabel("请选择程序");
@@ -67,16 +67,37 @@ void ProgressConfig::init()
 
 void ProgressConfig::initConnection()
 {
-    connect(cmdlnkbtn, &DCommandLinkButton::clicked, this,[=](){
-        QString url = QFileDialog::getOpenFileName(this, tr("Open File"), QStandardPaths::writableLocation(QStandardPaths::HomeLocation), tr("job (*.job)"));
-        QDesktopServices::openUrl(QUrl(url));
-        QTimer::singleShot(1000, [=](){
-             btn->setEnabled(true);
-         });
-        lineEdit->clear();
-        lineEdit->setText(url);
-        lineEdit->show();
-        clearButton->show();
+//    connect(cmdlnkbtn, &DCommandLinkButton::clicked, this,[=](){
+//        QString url = QFileDialog::getOpenFileName(this, tr("Open File"), QStandardPaths::writableLocation(QStandardPaths::HomeLocation), tr("job (*.job)"));
+        
+//        QDesktopServices::openUrl(QUrl(url));
+//        QTimer::singleShot(1000, [=](){
+//             btn->setEnabled(true);
+//         });
+//        lineEdit->clear();
+
+//        lineEdit->setText(url);
+//        lineEdit->show();
+//        clearButton->show();
+//    });
+
+    connect(cmdlnkbtn, &DCommandLinkButton::clicked, [ = ]() {
+        DFileDialog *fileDialog = new DFileDialog();
+        fileDialog->setAcceptMode(QFileDialog::AcceptOpen);
+        fileDialog->setFileMode(QFileDialog::ExistingFiles);
+        fileDialog->setNameFilter("*.deb");
+        if (fileDialog->exec() == QDialog::Accepted) {
+            clearButton->show();
+            QStringList strSelectedName = fileDialog->selectedFiles();
+            QString str;
+            for (int i = 0; i < strSelectedName.size(); i++) {
+                str.append(strSelectedName[i]);
+                str.append('\n');
+            }
+            textEdit->setText(str);
+        }
+        textEdit->show();
+        btn->setEnabled(true);
     });
 
     connect(btn,&DPushButton::clicked,[=](){
@@ -84,7 +105,7 @@ void ProgressConfig::initConnection()
     });
 
     connect(clearButton,&DCommandLinkButton::clicked,[=](){
-       lineEdit->clear();
+       textEdit->clear();
     });
 
 }

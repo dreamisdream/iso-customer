@@ -6,6 +6,8 @@
 #include <DFontSizeManager>
 #include <DCommandLinkButton>
 #include <DLineEdit>
+#include <DTextEdit>
+
 
 #include <QWidget>
 #include <QVBoxLayout>
@@ -31,8 +33,11 @@ private:
     DPushButton *btn;
     QVBoxLayout *layout;
     DCommandLinkButton  *cmdlnkbtn;
-    DLineEdit *lineEdit;
+    DTextEdit *textEdit;
     DCommandLinkButton *clearButton;
+
+    QStringList *debName;
+
 };
 
 #endif // PROGRESSCONFIG_H
