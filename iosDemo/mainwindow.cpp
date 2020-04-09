@@ -33,6 +33,8 @@ MainWindow::MainWindow(QWidget *parent)
     m_titlebar = this->titlebar();
     m_titlebar->setIcon(QIcon::fromTheme("iso_image6"));
 
+    setWindowIcon(QIcon::fromTheme("iso_image6"));
+
     init();
     initConnection();
 
@@ -41,10 +43,25 @@ MainWindow::MainWindow(QWidget *parent)
 void MainWindow::init()
 {
 
-    m_pHBoxLayout->addWidget(m_view, 1);
-    m_pHBoxLayout->addWidget(m_stackWidget, 3);
-
     m_ItemModel = new QStandardItemModel(m_view);
+
+    DFrame *leftFrame = new DFrame();
+    DFrame *rightFrame = new DFrame();
+
+    QVBoxLayout *leftLayout = new QVBoxLayout;
+    QVBoxLayout *rightLayout = new QVBoxLayout;
+
+    leftFrame->setLayout(leftLayout);
+    leftLayout->addWidget(m_view);
+
+    rightFrame->setLayout(rightLayout);
+    rightLayout->addWidget(m_stackWidget);
+
+    m_pHBoxLayout->addWidget(leftFrame, 1);
+    m_pHBoxLayout->addWidget(rightFrame, 3);
+
+    m_pCentralWidget->setLayout(m_pHBoxLayout);
+    setCentralWidget(m_pCentralWidget);
 
     QStandardItem *pItemSelectIosFile = new QStandardItem(QIcon::fromTheme("NO_active1"),"选择ISO");
     m_stackWidget->addWidget(m_selectIosFile);
@@ -97,8 +114,7 @@ void MainWindow::init()
 
     m_stackWidget->setCurrentWidget(m_selectIosFile);
 
-    m_pCentralWidget->setLayout(m_pHBoxLayout);
-    setCentralWidget(m_pCentralWidget);
+
 
 }
 

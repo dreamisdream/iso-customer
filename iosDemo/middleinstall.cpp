@@ -13,7 +13,7 @@ MiddleInstall::MiddleInstall(QWidget *parent)
     , btn(new DPushButton)
     , layout(new QVBoxLayout(this))
     , cmdlnkBtn(new DCommandLinkButton(tr("选择脚本")))
-    , clearBtn(new DCommandLinkButton("全部清除"))
+    , clearBtn(new DCommandLinkButton(tr("全部清除")))
     , lineEdit(new DLineEdit)
 {
     init();

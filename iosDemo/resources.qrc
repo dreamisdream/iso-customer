@@ -30,5 +30,6 @@
         <file>icons/deepin/builtin/dark/NO_inactive5_20px.svg</file>
         <file>icons/deepin/builtin/dark/NO_inactive6_20px.svg</file>
         <file>icons/deepin/builtin/dark/NO_inactive7_20px.svg</file>
+        <file>usr/share/application/hicolor/scalable/apps/iso_image8_256px.svg</file>
     </qresource>
 </RCC>
