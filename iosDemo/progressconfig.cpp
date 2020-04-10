@@ -19,8 +19,8 @@ ProgressConfig::ProgressConfig(QWidget *parent)
     , cmdlnkBtn(new DCommandLinkButton(tr("选择程序deb包")))
     , textEdit(new DTextEdit)
     , clearBtn(new DCommandLinkButton("全部清除"))
-//    , floatWidget(new DFloatingWidget)
-    , groupBox(new DGroupBox)
+    , widgetBox(new QWidget)
+    , boxLayout(new QVBoxLayout)
 {
     init();
     initConnection();
@@ -41,17 +41,14 @@ void ProgressConfig::init()
     hLayout->addWidget(label, Qt::AlignLeft);
     hLayout->addStretch(5);
 
-
     clearBtn->hide();
     hLayout->addWidget(clearBtn,Qt::AlignRight);
 
     layout->addLayout(hLayout);
 
-    groupBox->setStyleSheet("QGroup{border:none}");
-    groupBox->hide();
-//    floatWidget->hide();
-//    layout->addWidget(floatWidget);
-
+    layout->addWidget(widgetBox);
+    widgetBox->setLayout(boxLayout);
+    widgetBox->hide();                  // floatmessage widgte;
 
     textEdit->hide();
     layout->addWidget(textEdit);
@@ -84,19 +81,19 @@ void ProgressConfig::initConnection()
         pDFileDialog->show();
         pDFileDialog->exec();
 
-//        floatWidget->show();
+        widgetBox->show();
         QStringList strlistSelectedName = pDFileDialog->selectedFiles(); // 选择的文件
         QString str;
         for (QString strSelectFile : strlistSelectedName) {
             QFileInfo fileInfo(strSelectFile);
-//            DFloatingMessage *floatMessage = new DFloatingMessage(DFloatingMessage::ResidentType,this);
-//            floatMessage->setWidget(floatWidget);
-//            DMessageManager::instance()->sendMessage(this,floatMessage);
-
-            str.append(fileInfo.fileName()).append("\n");
+            DFloatingMessage *floatMessage = new DFloatingMessage(DFloatingMessage::ResidentType,widgetBox);
+            floatMessage->setMessage(fileInfo.fileName());
+            floatMessage->show();
+            boxLayout->addWidget(floatMessage);
+//            str.append(fileInfo.fileName()).append("\n");
         }
-        textEdit->setText(str);
-        textEdit->show();
+//        textEdit->setText(str);
+//        textEdit->show();
         btn->setEnabled(true);
         clearBtn->show();
     });

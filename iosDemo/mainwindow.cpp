@@ -33,7 +33,7 @@ MainWindow::MainWindow(QWidget *parent)
     m_titlebar = this->titlebar();
     m_titlebar->setIcon(QIcon::fromTheme("iso_image6"));
 
-    setWindowIcon(QIcon::fromTheme("iso_image8"));
+    setWindowIcon(QIcon::fromTheme("iso_image9"));
 
     init();
     initConnection();

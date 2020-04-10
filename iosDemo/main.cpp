@@ -10,13 +10,15 @@ DWIDGET_USE_NAMESPACE
 
 int main(int argc, char *argv[])
 {
+
     DApplication::loadDXcbPlugin();
     DApplication a(argc, argv);
+    a.loadTranslator();     //中文
     a.setAttribute(Qt::AA_UseHighDpiPixmaps);
 //    a.setTheme("light");
-    a.setOrganizationName("deepin");
+    a.setOrganizationName(u8"deepin");
 
-    a.setApplicationName("ISO定制工具");
+    a.setApplicationName(u8"ISO定制工具");
     a.setApplicationVersion("1.0.4");
     a.setProductIcon(QIcon::fromTheme("iso_image6"));
 //    a.setProductName("Dtk Application");

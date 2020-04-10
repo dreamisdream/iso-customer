@@ -17,7 +17,8 @@ SOURCES += \
     tailclear.cpp \
     selectkernel.cpp \
     output.cpp \
-    selectframe.cpp
+    selectframe.cpp \
+    fileselectdialog.cpp
 
 RESOURCES +=    resources.qrc
 
@@ -30,5 +31,6 @@ HEADERS += \
     tailclear.h \
     selectkernel.h \
     output.h \
-    selectframe.h
+    selectframe.h \
+    fileselectdialog.h
 
