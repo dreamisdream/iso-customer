@@ -1,6 +1,7 @@
 #include "prepare.h"
 
 #include <DLabel>
+#include <DFileDialog>
 
 #include <QTimer>
 #include <QFileDialog>
@@ -13,7 +14,7 @@ Prepare::Prepare(QWidget *parent)
     , layout(new QVBoxLayout(this))
     , cmdlnkBtn(new DCommandLinkButton(tr("选择脚本")))
     , clearBtn(new DCommandLinkButton(tr("全部清除")))
-    , lineEdit(new DLineEdit)
+    , textEdit(new DTextEdit)
 {
     init();
     initConnection();
@@ -39,8 +40,8 @@ void Prepare::init()
 
     layout->addLayout(hLayout);
 
-    lineEdit->hide();
-    layout->addWidget(lineEdit);
+    textEdit->hide();
+    layout->addWidget(textEdit);
     layout->addStretch();
 
 
@@ -62,19 +63,25 @@ void Prepare::init()
 
 void Prepare::initConnection()
 {
-    connect(cmdlnkBtn,&DCommandLinkButton::clicked,[=](){
-        QString url = QFileDialog::getOpenFileName(this, tr("Open File"),
-                                                              QStandardPaths::writableLocation(QStandardPaths::HomeLocation),
-                                                              tr("deb (*.deb)"));
-         QDesktopServices::openUrl(QUrl(url));
-         QTimer::singleShot(1000, [=](){
-          //   if("" == lineEdit->text())
-                 btn->setEnabled(true);
-         });
-         lineEdit->clear();
-         lineEdit->setText(url);
-         lineEdit->show();
-         clearBtn->show();
+
+    connect(cmdlnkBtn, &DCommandLinkButton::clicked, this, [=] {
+        DFileDialog *pDFileDialog = new DFileDialog();
+        pDFileDialog->setAcceptMode(QFileDialog::AcceptOpen); //文件对话框为打开文件类型
+        pDFileDialog->setFileMode(QFileDialog::ExistingFiles); //可同时选择打开多个文件
+        pDFileDialog->setNameFilter("*.job");
+        pDFileDialog->show();
+        pDFileDialog->exec();
+
+        QStringList strlistSelectedName = pDFileDialog->selectedFiles();
+        QString str;
+        for (QString strSelectFile : strlistSelectedName) {
+            QFileInfo fileInfo(strSelectFile);
+            str.append(fileInfo.fileName()).append("\n");
+        }
+        textEdit->setText(str);
+        textEdit->show();
+        btn->setEnabled(true);
+        clearBtn->show();
     });
 
     connect(btn,&DPushButton::clicked,[=](){
@@ -82,6 +89,6 @@ void Prepare::initConnection()
     });
 
     connect(clearBtn,&DCommandLinkButton::clicked,[=](){
-        lineEdit->clear();
+        textEdit->clear();
     });
 }

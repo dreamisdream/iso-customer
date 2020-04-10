@@ -64,6 +64,7 @@ void SelectFrame::init()
             itemModel->item(indexFromList.row(), 0)->setCheckState(Qt::Unchecked);
         }
         itemModel->item(index.row(), 0)->setCheckState(Qt::Checked);
+        itemModel->item(index.row(),0)->setSelectable(false);
         btn->setEnabled(true);
     });
 }

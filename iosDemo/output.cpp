@@ -43,8 +43,6 @@ void Output::initConnection()
     connect(btn, &DPushButton::clicked, [ = ]() {
         if(timer->isActive()){
               timer->stop();
-              //  切换 界面
-
         }else {
             timer->start();
             waterProgress->start();

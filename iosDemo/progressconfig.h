@@ -5,9 +5,11 @@
 #include <DLabel>
 #include <DFontSizeManager>
 #include <DCommandLinkButton>
-#include <DLineEdit>
 #include <DTextEdit>
-
+#include <DBackgroundGroup>
+#include <DGroupBox>
+#include <DFloatingMessage>
+#include <DFloatingWidget>
 
 #include <QWidget>
 #include <QVBoxLayout>
@@ -32,11 +34,12 @@ public slots:
 private:
     DPushButton *btn;
     QVBoxLayout *layout;
-    DCommandLinkButton  *cmdlnkbtn;
+    DCommandLinkButton  *cmdlnkBtn;
     DTextEdit *textEdit;
-    DCommandLinkButton *clearButton;
+    DCommandLinkButton *clearBtn;
+    DGroupBox  *groupBox;
+    DFloatingWidget *floatWidget;
 
-    QStringList *debName;
 
 };
 

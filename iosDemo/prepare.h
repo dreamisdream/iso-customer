@@ -4,7 +4,7 @@
 #include <DPushButton>
 #include <DFontSizeManager>
 #include <DCommandLinkButton>
-#include <DLineEdit>
+#include <DTextEdit>
 
 #include <QWidget>
 #include <QVBoxLayout>
@@ -29,7 +29,7 @@ private:
      QVBoxLayout *layout;
      DCommandLinkButton  *cmdlnkBtn;
      DCommandLinkButton  *clearBtn;
-     DLineEdit *lineEdit;
+     DTextEdit *textEdit;
 
 };
 

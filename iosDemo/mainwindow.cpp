@@ -45,7 +45,9 @@ void MainWindow::init()
 
     m_ItemModel = new QStandardItemModel(m_view);
 
+    // 左边的frame
     DFrame *leftFrame = new DFrame();
+    // 右边的frame
     DFrame *rightFrame = new DFrame();
 
     QVBoxLayout *leftLayout = new QVBoxLayout;
@@ -151,10 +153,9 @@ void MainWindow::showClicked(const QModelIndex &index)
 
 void MainWindow::nextPage(int num)
 {
-    QStandardItemModel *itemModel = m_ItemModel;
-    itemModel->item(num)->setCheckState(Qt::Checked);
-    itemModel->item(num + 1, 0)->setEnabled(true);
-    m_view->setCurrentIndex(itemModel->indexFromItem(itemModel->item(num + 1, 0)));
+    m_ItemModel->item(num)->setCheckState(Qt::Checked);
+    m_ItemModel->item(num + 1, 0)->setEnabled(true);
+    m_view->setCurrentIndex(m_ItemModel->indexFromItem(m_ItemModel->item(num + 1, 0)));
     m_stackWidget->setCurrentIndex(num + 1);
 
 }

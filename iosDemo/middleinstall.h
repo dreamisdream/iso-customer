@@ -4,8 +4,9 @@
 #include <DPushButton>
 #include <DFontSizeManager>
 #include <DCommandLinkButton>
-#include <DLineEdit>
+#include <DTextEdit>
 
+#include <QStringList>
 #include <QWidget>
 #include <QVBoxLayout>
 
@@ -30,7 +31,9 @@ private:
     QVBoxLayout *layout;
     DCommandLinkButton  *cmdlnkBtn;
     DCommandLinkButton *clearBtn;
-    DLineEdit *lineEdit;
+    DTextEdit *textEdit;
+
+//    QStringList listHistory;
 };
 
 #endif // MIDDLEINSTALL_H

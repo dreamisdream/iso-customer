@@ -5,7 +5,7 @@
 #include <DLabel>
 #include <DFileDialog>
 #include <DLineEdit>
-
+#include <DMessageManager>
 
 #include <QVBoxLayout>
 #include <QUrl>
@@ -16,9 +16,11 @@ ProgressConfig::ProgressConfig(QWidget *parent)
     : QWidget(parent)
     , btn(new DPushButton)
     , layout(new QVBoxLayout(this))
-    , cmdlnkbtn(new DCommandLinkButton(tr("选择程序deb包")))
+    , cmdlnkBtn(new DCommandLinkButton(tr("选择程序deb包")))
     , textEdit(new DTextEdit)
-    , clearButton(new DCommandLinkButton("全部清除"))
+    , clearBtn(new DCommandLinkButton("全部清除"))
+    , floatWidget(new DFloatingWidget)
+
 {
     init();
     initConnection();
@@ -40,10 +42,14 @@ void ProgressConfig::init()
     hLayout->addStretch(5);
 
 
-    clearButton->hide();
-    hLayout->addWidget(clearButton,Qt::AlignRight);
+    clearBtn->hide();
+    hLayout->addWidget(clearBtn,Qt::AlignRight);
 
     layout->addLayout(hLayout);
+
+    floatWidget->hide();
+    layout->addWidget(floatWidget);
+
 
     textEdit->hide();
     layout->addWidget(textEdit);
@@ -56,7 +62,7 @@ void ProgressConfig::init()
     layout->addWidget(label2,0,Qt::AlignTop|Qt::AlignHCenter);
     layout->addStretch();
 
-    layout->addWidget(cmdlnkbtn,0,Qt::AlignHCenter);
+    layout->addWidget(cmdlnkBtn,0,Qt::AlignHCenter);
 
     btn->setText("下一步");
     btn->setFixedWidth(width()/2);
@@ -67,44 +73,38 @@ void ProgressConfig::init()
 
 void ProgressConfig::initConnection()
 {
-//    connect(cmdlnkbtn, &DCommandLinkButton::clicked, this,[=](){
-//        QString url = QFileDialog::getOpenFileName(this, tr("Open File"), QStandardPaths::writableLocation(QStandardPaths::HomeLocation), tr("job (*.job)"));
-        
-//        QDesktopServices::openUrl(QUrl(url));
-//        QTimer::singleShot(1000, [=](){
-//             btn->setEnabled(true);
-//         });
-//        lineEdit->clear();
 
-//        lineEdit->setText(url);
-//        lineEdit->show();
-//        clearButton->show();
-//    });
+    connect(cmdlnkBtn, &DCommandLinkButton::clicked, this, [=] {
+        DFileDialog *pDFileDialog = new DFileDialog();
+        pDFileDialog->setAcceptMode(QFileDialog::AcceptOpen); //文件对话框为打开文件类型
+        pDFileDialog->setFileMode(QFileDialog::ExistingFiles); //可同时选择打开多个文件
+        pDFileDialog->setNameFilter("*.deb");
+        pDFileDialog->show();
+        pDFileDialog->exec();
 
-    connect(cmdlnkbtn, &DCommandLinkButton::clicked, [ = ]() {
-        DFileDialog *fileDialog = new DFileDialog();
-        fileDialog->setAcceptMode(QFileDialog::AcceptOpen);
-        fileDialog->setFileMode(QFileDialog::ExistingFiles);
-        fileDialog->setNameFilter("*.deb");
-        if (fileDialog->exec() == QDialog::Accepted) {
-            clearButton->show();
-            QStringList strSelectedName = fileDialog->selectedFiles();
-            QString str;
-            for (int i = 0; i < strSelectedName.size(); i++) {
-                str.append(strSelectedName[i]);
-                str.append('\n');
-            }
-            textEdit->setText(str);
+        floatWidget->show();
+        QStringList strlistSelectedName = pDFileDialog->selectedFiles(); // 选择的文件
+        QString str;
+        for (QString strSelectFile : strlistSelectedName) {
+            QFileInfo fileInfo(strSelectFile);
+//            DFloatingMessage *floatMessage = new DFloatingMessage(DFloatingMessage::ResidentType,this);
+
+//            floatMessage->setWidget(floatWidget);
+//            DMessageManager::instance()->sendMessage(this,floatMessage);
+
+            str.append(fileInfo.fileName()).append("\n");
         }
+        textEdit->setText(str);
         textEdit->show();
         btn->setEnabled(true);
+        clearBtn->show();
     });
 
     connect(btn,&DPushButton::clicked,[=](){
         emit signalProgressConfig(2);
     });
 
-    connect(clearButton,&DCommandLinkButton::clicked,[=](){
+    connect(clearBtn,&DCommandLinkButton::clicked,[=](){
        textEdit->clear();
     });
 

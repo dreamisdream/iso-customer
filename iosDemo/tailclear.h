@@ -4,7 +4,7 @@
 #include <DPushButton>
 #include <DFontSizeManager>
 #include <DCommandLinkButton>
-#include <DLineEdit>
+#include <DTextEdit>
 
 #include <QVBoxLayout>
 #include <QWidget>
@@ -26,7 +26,7 @@ private:
     QVBoxLayout *layout;
     DCommandLinkButton  *cmdlnkBtn;
     DCommandLinkButton  *clearBtn;
-    DLineEdit  *lineEdit;
+    DTextEdit  *textEdit;
 };
 
 #endif // TAILCLEAR_H

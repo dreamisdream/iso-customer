@@ -30,9 +30,7 @@ void SelectIsoFile::init()
     DFontSizeManager::instance()->bind(label, DFontSizeManager::T3);
     layout->addWidget(label,0,Qt::AlignTop | Qt::AlignLeft);
 
-    QStringList str;
-    str<<"iso file(*.iso)";
-    fileChooserEdit->setNameFilters(str);
+    fileChooserEdit->setNameFilters(QStringList("ISO(*.iso)"));
     layout->addWidget(fileChooserEdit);
     layout->addStretch();
 
