@@ -38,7 +38,7 @@ private:
     DTextEdit *textEdit;
     DCommandLinkButton *clearBtn;
     DGroupBox  *groupBox;
-    DFloatingWidget *floatWidget;
+//    DFloatingWidget *floatWidget;
 
 
 };

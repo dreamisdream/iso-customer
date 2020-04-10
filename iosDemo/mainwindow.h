@@ -42,7 +42,7 @@ private:
     QList<QString>      m_modules;
     DListView           *m_view;
     QStackedWidget      *m_stackWidget;
-    QHash<QString, QWidget*> m_has_ItemName_ItemWiget;
+//    QHash<QString, QWidget*> m_has_ItemName_ItemWiget;
     QWidget             *m_pCentralWidget;
 
     SelectIsoFile       *m_selectIosFile;

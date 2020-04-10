@@ -67,49 +67,49 @@ void MainWindow::init()
 
     QStandardItem *pItemSelectIosFile = new QStandardItem(QIcon::fromTheme("NO_active1"),"选择ISO");
     m_stackWidget->addWidget(m_selectIosFile);
-    m_has_ItemName_ItemWiget.insert("选择ISO",m_selectIosFile);
+//    m_has_ItemName_ItemWiget.insert("选择ISO",m_selectIosFile);
     m_ItemModel->appendRow(pItemSelectIosFile);
 
     QStandardItem *pItemSelectFrame = new QStandardItem(QIcon::fromTheme("NO_active2"),"选择架构");
     pItemSelectFrame->setEnabled(false);
     m_stackWidget->addWidget(m_selectFrame);
-    m_has_ItemName_ItemWiget.insert("选择架构",m_selectFrame);
+//    m_has_ItemName_ItemWiget.insert("选择架构",m_selectFrame);
     m_ItemModel->appendRow(pItemSelectFrame);
 
     QStandardItem *pItemProgressConfig = new QStandardItem(QIcon::fromTheme("NO_active3"),"程序配置");
     pItemProgressConfig->setEnabled(false);
     m_stackWidget->addWidget(m_programConfig);
-    m_has_ItemName_ItemWiget.insert("程序配置",m_programConfig);
+//    m_has_ItemName_ItemWiget.insert("程序配置",m_programConfig);
     m_ItemModel->appendRow(pItemProgressConfig);
 
     QStandardItem *pItemPrepare = new QStandardItem(QIcon::fromTheme("NO_active4"),"前期准备");
     pItemPrepare->setEnabled(false);
     m_stackWidget->addWidget(m_prepare);
-    m_has_ItemName_ItemWiget.insert("前期准备",m_prepare);
+//    m_has_ItemName_ItemWiget.insert("前期准备",m_prepare);
     m_ItemModel->appendRow(pItemPrepare);
 
     QStandardItem *pItemMiddleInstall = new QStandardItem(QIcon::fromTheme("NO_active5"),"中期安装");
     pItemMiddleInstall->setEnabled(false);
     m_stackWidget->addWidget(m_middleInstall);
-    m_has_ItemName_ItemWiget.insert("中期安装",m_middleInstall);
+//    m_has_ItemName_ItemWiget.insert("中期安装",m_middleInstall);
     m_ItemModel->appendRow(pItemMiddleInstall);
 
     QStandardItem *pItemTailClear = new QStandardItem(QIcon::fromTheme("NO_active6"),"后期清理");
     pItemTailClear->setEnabled(false);
     m_stackWidget->addWidget(m_tailClear);
-    m_has_ItemName_ItemWiget.insert("后期清理",m_tailClear);
+//    m_has_ItemName_ItemWiget.insert("后期清理",m_tailClear);
     m_ItemModel->appendRow(pItemTailClear);
 
     QStandardItem *pItemSelectKernel = new QStandardItem(QIcon::fromTheme("NO_active7"),"选择Kernel");
     pItemSelectKernel->setEnabled(false);
     m_stackWidget->addWidget(m_selectKernel);
-    m_has_ItemName_ItemWiget.insert("选择Kernel",m_selectKernel);
+//    m_has_ItemName_ItemWiget.insert("选择Kernel",m_selectKernel);
     m_ItemModel->appendRow(pItemSelectKernel);
 
     QStandardItem *pItemOutput = new QStandardItem(QIcon::fromTheme("NO_active8"),"输出");
     pItemOutput->setEnabled(false);
     m_stackWidget->addWidget(m_output);
-    m_has_ItemName_ItemWiget.insert("输出",m_output);
+//    m_has_ItemName_ItemWiget.insert("输出",m_output);
     m_ItemModel->appendRow(pItemOutput);
 
     m_view->setModel(m_ItemModel);
@@ -148,7 +148,8 @@ void MainWindow::showClicked(const QModelIndex &index)
     QString strName;
     strName = index.data().toString();
     if (m_ItemModel->item(index.row(),0)->isEnabled())
-        m_stackWidget->setCurrentWidget(m_has_ItemName_ItemWiget.value(strName));
+        m_stackWidget->setCurrentIndex(index.row());
+       // m_stackWidget->setCurrentWidget(m_has_ItemName_ItemWiget.value(strName));
 }
 
 void MainWindow::nextPage(int num)

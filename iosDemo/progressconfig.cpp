@@ -19,8 +19,8 @@ ProgressConfig::ProgressConfig(QWidget *parent)
     , cmdlnkBtn(new DCommandLinkButton(tr("选择程序deb包")))
     , textEdit(new DTextEdit)
     , clearBtn(new DCommandLinkButton("全部清除"))
-    , floatWidget(new DFloatingWidget)
-
+//    , floatWidget(new DFloatingWidget)
+    , groupBox(new DGroupBox)
 {
     init();
     initConnection();
@@ -47,8 +47,10 @@ void ProgressConfig::init()
 
     layout->addLayout(hLayout);
 
-    floatWidget->hide();
-    layout->addWidget(floatWidget);
+    groupBox->setStyleSheet("QGroup{border:none}");
+    groupBox->hide();
+//    floatWidget->hide();
+//    layout->addWidget(floatWidget);
 
 
     textEdit->hide();
@@ -82,13 +84,12 @@ void ProgressConfig::initConnection()
         pDFileDialog->show();
         pDFileDialog->exec();
 
-        floatWidget->show();
+//        floatWidget->show();
         QStringList strlistSelectedName = pDFileDialog->selectedFiles(); // 选择的文件
         QString str;
         for (QString strSelectFile : strlistSelectedName) {
             QFileInfo fileInfo(strSelectFile);
 //            DFloatingMessage *floatMessage = new DFloatingMessage(DFloatingMessage::ResidentType,this);
-
 //            floatMessage->setWidget(floatWidget);
 //            DMessageManager::instance()->sendMessage(this,floatMessage);
 
