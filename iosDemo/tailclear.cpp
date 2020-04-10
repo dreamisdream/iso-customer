@@ -64,7 +64,7 @@ void TailClear::initConnection()
     connect(cmdlnkBtn, &DCommandLinkButton::clicked, this, [=] {
         DFileDialog *pDFileDialog = new DFileDialog();
         pDFileDialog->setAcceptMode(QFileDialog::AcceptOpen); //文件对话框为打开文件类型
-        pDFileDialog->setFileMode(QFileDialog::ExistingFile); //可同时选择打开多个文件
+        pDFileDialog->setFileMode(QFileDialog::ExistingFiles); //可同时选择打开多个文件
         pDFileDialog->setNameFilter("*.job");
         pDFileDialog->show();
         pDFileDialog->exec();
