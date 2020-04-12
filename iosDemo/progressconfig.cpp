@@ -67,7 +67,6 @@ void ProgressConfig::init()
     btn->setFixedWidth(width()/2);
     btn->setEnabled(false);
     layout->addWidget(btn,0,Qt::AlignCenter);
-
 }
 
 void ProgressConfig::initConnection()
@@ -97,11 +96,9 @@ void ProgressConfig::initConnection()
         btn->setEnabled(true);
         clearBtn->show();
     });
-
     connect(btn,&DPushButton::clicked,[=](){
         emit signalProgressConfig(2);
     });
-
     connect(clearBtn,&DCommandLinkButton::clicked,[=](){
        textEdit->clear();
     });

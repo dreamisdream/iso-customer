@@ -30,10 +30,7 @@ public:
 private:
     void init();
     void initConnection();
-
-
 signals:
-
 public slots:
     void showClicked(const QModelIndex &index);
     void nextPage(int index);
@@ -42,7 +39,6 @@ private:
     QList<QString>      m_modules;
     DListView           *m_view;
     QStackedWidget      *m_stackWidget;
-//    QHash<QString, QWidget*> m_has_ItemName_ItemWiget;
     QWidget             *m_pCentralWidget;
 
     SelectIsoFile       *m_selectIosFile;
@@ -57,7 +53,6 @@ private:
     QHBoxLayout         *m_pHBoxLayout;
     DTitlebar           *m_titlebar;
     QStandardItemModel  *m_ItemModel;
-
 };
 
 #endif // MAINWINDOW_H

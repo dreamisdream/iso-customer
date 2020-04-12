@@ -2,8 +2,6 @@
 
 #include <DLabel>
 
-
-
 SelectKernel::SelectKernel(QWidget *parent)
     : QWidget(parent)
     , btn(new DPushButton())
@@ -25,9 +23,9 @@ void SelectKernel::init()
     DFontSizeManager::instance()->bind(label, DFontSizeManager::T3);
     layout->addWidget(label,0,Qt::AlignTop | Qt::AlignLeft);
 
-    DLabel *smallTitle1 = new DLabel("kernel");
+    DLabel *smallTitleKernel = new DLabel("kernel");
 
-    DLabel *smallTitle2 = new DLabel("initrd");
+    DLabel *smallTitleInitrd = new DLabel("initrd");
 
     kernelChooser->setNameFilters(QStringList("所有文件(*)"));
 
@@ -36,14 +34,13 @@ void SelectKernel::init()
     btn->setText(tr("下一步"));
     btn->setEnabled(false);
 
-    layout->addWidget(smallTitle1);
+    layout->addWidget(smallTitleKerne);
     layout->addWidget(kernelChooser);
-    layout->addWidget(smallTitle2);
+    layout->addWidget(smallTitleInitrd);
     layout->addWidget(initrdChooser);
     layout->addStretch();
     btn->setFixedWidth(width()/2);
     layout->addWidget(btn,0,Qt::AlignCenter);
-
 }
 
 void SelectKernel::initConnection()
@@ -54,15 +51,12 @@ void SelectKernel::initConnection()
             btn->setEnabled(true);
         }
     });
-
     connect(initrdChooser, &DFileChooserEdit::fileChoosed, [ = ](const QString & fileName) {
         if (!fileName.isEmpty() && !kernelChooser->text().isEmpty()) {
             btn->setEnabled(true);
         }
     });
-
     connect(btn,&DPushButton::clicked,[=](){
         emit   signalSelectKernel(6);
     });
-
 }

@@ -6,8 +6,6 @@
 #include <DIconButton>
 #include <DListWidget>
 
-
-
 DWIDGET_USE_NAMESPACE
 
 SelectFrame::SelectFrame()
@@ -19,7 +17,6 @@ SelectFrame::SelectFrame()
     init();
 
     initConnection();
-
 }
 
 void SelectFrame::init()
@@ -56,7 +53,6 @@ void SelectFrame::init()
 
     layout->addLayout(hBoxLayout);
 
-
     connect(listView, &DListView::clicked, [ = ](const QModelIndex & index) {
         for(int i=0;i<3;i++)
         {
@@ -74,7 +70,6 @@ void SelectFrame::initConnection()
     connect(btn,&DPushButton::clicked,[=]{
        emit  signalSelectFrame(1);
     });
-
 }
 
 

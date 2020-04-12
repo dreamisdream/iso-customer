@@ -24,7 +24,6 @@ signals:
 private:
     void init();
     void initConnection();
-
 private:
     DPushButton *btn;
     QTimer *timer;

@@ -28,7 +28,6 @@ private:
     QVBoxLayout *layout;
     DFileChooserEdit *kernelChooser;
     DFileChooserEdit *initrdChooser;
-
 };
 
 #endif // SELECTKERNEL_H

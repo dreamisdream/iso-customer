@@ -17,12 +17,9 @@ class MiddleInstall : public QWidget
     Q_OBJECT
 public:
     explicit MiddleInstall(QWidget *parent = nullptr);
-
 signals:
     void signalMiddleInstall(int index);
-
 public slots:
-
 private:
     void init();
     void initConnection();
@@ -32,8 +29,6 @@ private:
     DCommandLinkButton  *cmdlnkBtn;
     DCommandLinkButton *clearBtn;
     DTextEdit *textEdit;
-
-//    QStringList listHistory;
 };
 
 #endif // MIDDLEINSTALL_H

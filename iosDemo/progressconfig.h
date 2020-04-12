@@ -21,16 +21,12 @@ class ProgressConfig : public QWidget
     Q_OBJECT
 public:
     explicit ProgressConfig(QWidget *parent = nullptr);
-
 signals:
     void signalProgressConfig(int index);
-
 private:
     void init();
     void initConnection();
 public slots:
-//    void slotOpenFile();
-//    void slotDisplayUrl();
 private:
     DPushButton *btn;
     QVBoxLayout *layout;
@@ -39,8 +35,6 @@ private:
     DCommandLinkButton *clearBtn;
     QWidget *widgetBox;
     QVBoxLayout *boxLayout;
-
-
 };
 
 #endif // PROGRESSCONFIG_H

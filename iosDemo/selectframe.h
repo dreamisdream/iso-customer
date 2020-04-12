@@ -22,7 +22,6 @@ private:
 
 signals:
     void signalSelectFrame(int index);
-
 private:
     DPushButton *btn;
     DPushButton *btnOpenDir;

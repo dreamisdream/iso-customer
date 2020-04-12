@@ -29,13 +29,13 @@ signals:
 
 public slots:
 private:
-    DPushButton *btn;
-    QVBoxLayout *layout;
-    DCommandLinkButton  *cmdlnkBtn;
-    DTextEdit *textEdit;
-    DCommandLinkButton *clearBtn;
-    QWidget *widgetBox;
-    QVBoxLayout *boxLayout;
+    DPushButton			 *btn;
+    QVBoxLayout 	  	 *layout;
+    DCommandLinkButton   *cmdlnkBtn;
+    DTextEdit 		     *textEdit;
+    DCommandLinkButton   *clearBtn;
+    QWidget 		     *widgetBox;
+    QVBoxLayout 		 *boxLayout;
 };
 
 #endif // FILESELECTDIALOG_H

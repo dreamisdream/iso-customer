@@ -16,13 +16,11 @@ public:
     SelectIsoFile(QWidget *parent = nullptr);
 protected slots:
     void checkBtnStatus();
-//    void next();
 signals:
     void signalSelectIsoFileBtn(int index);
 private:
     void init();
     void initConnection();
-
 private:
     DFileChooserEdit *fileChooserEdit;
     DPushButton *btn;

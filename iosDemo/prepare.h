@@ -22,7 +22,6 @@ signals:
 private:
     void init();
     void initConnection();
-
 public slots:
 private:
      DPushButton *btn;
@@ -30,7 +29,6 @@ private:
      DCommandLinkButton  *cmdlnkBtn;
      DCommandLinkButton  *clearBtn;
      DTextEdit *textEdit;
-
 };
 
 #endif // PREPARE_H

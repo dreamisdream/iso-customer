@@ -18,7 +18,6 @@ Prepare::Prepare(QWidget *parent)
 {
     init();
     initConnection();
-
 }
 
 void Prepare::init()
@@ -34,7 +33,6 @@ void Prepare::init()
     hLayout->addWidget(label, Qt::AlignLeft);
     hLayout->addStretch(5);
 
-
     clearBtn->hide();
     hLayout->addWidget(clearBtn,Qt::AlignRight);
 
@@ -43,7 +41,6 @@ void Prepare::init()
     textEdit->hide();
     layout->addWidget(textEdit);
     layout->addStretch();
-
 
     DLabel *label2 = new DLabel("请选择前期准备");
     DFontSizeManager::instance()->bind(label2, DFontSizeManager::T2);

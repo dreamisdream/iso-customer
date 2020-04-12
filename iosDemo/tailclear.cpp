@@ -32,7 +32,6 @@ void TailClear::init()
     hLayout->addWidget(label, Qt::AlignLeft);
     hLayout->addStretch(5);
 
-
     clearBtn->hide();
     hLayout->addWidget(clearBtn,Qt::AlignRight);
 
@@ -41,7 +40,6 @@ void TailClear::init()
     textEdit->hide();
     layout->addWidget(textEdit);
     layout->addStretch();
-
 
     DLabel *label2 = new DLabel("请选择后期清理");
     DFontSizeManager::instance()->bind(label2, DFontSizeManager::T2);
@@ -81,13 +79,10 @@ void TailClear::initConnection()
         clearBtn->show();
 
     });
-
     connect(btn,&DPushButton::clicked,[=](){
         emit signalTailClear(5);
     });
-
     connect(clearBtn,&DCommandLinkButton::clicked,[=](){
         textEdit->clear();
     });
-
 }

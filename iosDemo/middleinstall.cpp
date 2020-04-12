@@ -66,8 +66,6 @@ void MiddleInstall::initConnection()
 {
     connect(cmdlnkBtn, &DCommandLinkButton::clicked, this, [=] {
         DFileDialog *pDFileDialog = new DFileDialog();
-//        listHistory = pDFileDialog->history();
-//        pDFileDialog->setHistory(listHistory);
         pDFileDialog->setAcceptMode(QFileDialog::AcceptOpen); //文件对话框为打开文件类型
         pDFileDialog->setFileMode(QFileDialog::ExistingFiles); //可同时选择打开多个文件
         pDFileDialog->setNameFilter("*.job");
@@ -84,7 +82,6 @@ void MiddleInstall::initConnection()
         textEdit->show();
         btn->setEnabled(true);
         clearBtn->show();
-
     });
 
     connect(btn,&DPushButton::clicked,[=](){

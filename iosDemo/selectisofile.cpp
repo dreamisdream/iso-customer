@@ -45,13 +45,11 @@ void SelectIsoFile::initConnection()
 {
     // open iso file
     connect(fileChooserEdit,&DFileChooserEdit::dialogOpened,this,&SelectIsoFile::checkBtnStatus);
-
     // next page
     connect(btn, &DPushButton::clicked, this,[=](){
         emit signalSelectIsoFileBtn(0);
     });
 }
-
 void SelectIsoFile::checkBtnStatus()
 {
 //    QString str = fileChooserEdit->directoryUrl().toString();
